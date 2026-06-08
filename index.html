@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opeyemi Daniel — ML & Data Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Spline+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e1512; --bg-soft:#13201b; --card:#16241e;
+    --ink:#eef3f0; --muted:#9db1a8; --line:#27392f;
+    --accent:#3fae84; --accent-deep:#2e5e4e;
+    --display:"Fraunces",Georgia,serif; --body:"Spline Sans",system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  .accent{color:var(--accent)}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:rgba(14,21,18,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{font-family:var(--display);font-weight:600;font-size:1.15rem;letter-spacing:.3px}
+  .brand span{color:var(--accent)}
+  .links{display:flex;gap:30px;font-size:.92rem;color:var(--muted)}
+  .links a{transition:color .2s}
+  .links a:hover{color:var(--ink)}
+  .nav-toggle{display:none;background:none;border:0;color:var(--ink);font-size:1.5rem;cursor:pointer}
+  @media(max-width:720px){.links{display:none}.links.open{display:flex;position:absolute;top:68px;left:0;right:0;
+    flex-direction:column;background:var(--bg-soft);padding:20px 28px;gap:18px;border-bottom:1px solid var(--line)}
+    .nav-toggle{display:block}}
+
+  /* hero */
+  header.hero{position:relative;padding:120px 0 100px;overflow:hidden}
+  header.hero::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(60% 50% at 75% 20%,rgba(63,174,132,.16),transparent 70%),
+               radial-gradient(40% 40% at 10% 90%,rgba(46,94,78,.22),transparent 70%);
+    pointer-events:none}
+  .eyebrow{color:var(--accent);font-size:.85rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px;
+    opacity:0;animation:rise .7s .1s forwards}
+  .hero h1{font-family:var(--display);font-weight:600;font-size:clamp(2.8rem,8vw,5.4rem);line-height:1.02;
+    letter-spacing:-1.5px;margin-bottom:18px;opacity:0;animation:rise .7s .2s forwards}
+  .hero h2{font-family:var(--display);font-weight:400;font-style:italic;font-size:clamp(1.2rem,3.5vw,1.9rem);
+    color:var(--muted);margin-bottom:26px;opacity:0;animation:rise .7s .3s forwards}
+  .tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:38px;opacity:0;animation:rise .7s .4s forwards}
+  .tags span{font-size:.8rem;color:var(--muted);border:1px solid var(--line);border-radius:30px;padding:6px 14px}
+  .cta{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:rise .7s .5s forwards}
+  .btn{padding:13px 26px;border-radius:8px;font-weight:500;font-size:.95rem;transition:transform .2s,box-shadow .2s}
+  .btn-primary{background:var(--accent);color:#06120d;box-shadow:0 8px 24px rgba(63,174,132,.25)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(63,174,132,.35)}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+  /* sections */
+  section{padding:90px 0;border-top:1px solid var(--line)}
+  .sec-label{font-family:var(--display);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:600;
+    letter-spacing:-.5px;margin-bottom:14px}
+  .sec-label .num{color:var(--accent);font-size:1rem;font-family:var(--body);vertical-align:super;margin-right:10px}
+  .lead{color:var(--muted);max-width:640px;margin-bottom:44px}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1fr;gap:36px}
+  .about p{margin-bottom:18px;color:#d3ddd8}
+  .stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:8px}
+  .stat b{font-family:var(--display);font-size:2.2rem;display:block;color:var(--accent)}
+  .stat span{font-size:.85rem;color:var(--muted)}
+
+  /* skills */
+  .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+  .skill-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;
+    transition:transform .25s,border-color .25s}
+  .skill-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .skill-card h3{font-family:var(--display);font-weight:600;font-size:1.05rem;margin-bottom:14px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:.82rem;background:var(--bg-soft);border:1px solid var(--line);border-radius:6px;padding:5px 11px;color:#c4d2cc}
+
+  /* projects */
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px}
+  .filter{background:none;border:1px solid var(--line);color:var(--muted);border-radius:30px;
+    padding:8px 18px;font-size:.85rem;cursor:pointer;font-family:var(--body);transition:all .2s}
+  .filter.active,.filter:hover{background:var(--accent);color:#06120d;border-color:var(--accent)}
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+  .proj{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;
+    display:flex;flex-direction:column;transition:transform .25s,border-color .25s;position:relative;overflow:hidden}
+  .proj::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .proj:hover{transform:translateY(-5px);border-color:var(--accent)}
+  .proj:hover::after{transform:scaleX(1)}
+  .proj h3{font-family:var(--display);font-weight:600;font-size:1.2rem;margin-bottom:10px}
+  .proj p{color:var(--muted);font-size:.92rem;flex-grow:1;margin-bottom:16px}
+  .proj .chips{margin-bottom:16px}
+  .proj .view{font-size:.85rem;color:var(--accent);font-weight:500}
+  .proj .view::after{content:" →";transition:margin .2s}
+  .proj:hover .view::after{margin-left:5px}
+
+  /* contact */
+  .contact{text-align:center}
+  .contact .sec-label{margin-bottom:18px}
+  .contact-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+
+  footer{padding:40px 0;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Opeyemi<span>.</span></div>
+    <button class="nav-toggle" aria-label="menu">☰</button>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="Opeyemi_Daniel_CV.pdf" class="accent">CV ↓</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Hello, I'm</div>
+    <h1>Opeyemi Daniel</h1>
+    <h2>Machine Learning Engineer &amp; Data Scientist</h2>
+    <div class="tags">
+      <span>Deep Learning</span><span>NLP &amp; RAG</span><span>Data Engineering</span>
+      <span>Python</span><span>Cloud &amp; APIs</span>
+    </div>
+    <div class="cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="about">
+  <div class="wrap reveal">
+    <div class="sec-label"><span class="num">01</span>About</div>
+    <div class="about-grid">
+      <div>
+        <p>I'm a machine learning engineer and data scientist with three years of professional experience building AI-driven solutions across fintech and telecoms — from predictive analytics that improved network uptime to deployed deep learning models and RAG-powered chatbots.</p>
+        <p>I'm currently completing an MSc in Machine Learning &amp; Deep Learning at the University of Strathclyde in Glasgow, after a First Class BEng in Computer Engineering. I enjoy taking a problem end-to-end: clean data pipelines, well-tested models, and APIs that actually ship.</p>
+        <div class="stats">
+          <div class="stat"><b>3+</b><span>Years experience</span></div>
+          <div class="stat"><b>MSc</b><span>ML &amp; Deep Learning</span></div>
+          <div class="stat"><b>1st</b><span>Class BEng</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap reveal">
+    <div class="sec-label"><span class="num">02</span>Skills &amp; Tools</div>
+    <p class="lead">The stack I reach for across the ML and data lifecycle.</p>
+    <div class="skill-grid">
+      <div class="skill-card"><h3>Languages</h3><div class="chips">
+        <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">C / C++</span><span class="chip">Dart</span></div></div>
+      <div class="skill-card"><h3>ML &amp; AI</h3><div class="chips">
+        <span class="chip">TensorFlow</span><span class="chip">Scikit-learn</span><span class="chip">Deep Learning</span><span class="chip">RAG</span><span class="chip">Embeddings</span><span class="chip">NLP</span></div></div>
+      <div class="skill-card"><h3>Backend &amp; Web</h3><div class="chips">
+        <span class="chip">Flask</span><span class="chip">FastAPI</span><span class="chip">Django</span><span class="chip">REST APIs</span></div></div>
+      <div class="skill-card"><h3>Data &amp; Cloud</h3><div class="chips">
+        <span class="chip">PostgreSQL</span><span class="chip">ETL Pipelines</span><span class="chip">Azure</span><span class="chip">Web Scraping</span></div></div>
+      <div class="skill-card"><h3>Tools</h3><div class="chips">
+        <span class="chip">Git</span><span class="chip">Docker</span><span class="chip">Playwright</span><span class="chip">Selenium</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap reveal">
+    <div class="sec-label"><span class="num">03</span>Projects</div>
+    <p class="lead">Selected work spanning deep learning, applied NLP and data engineering. Click any card to view the code.</p>
+    <div class="filters">
+      <button class="filter active" data-f="all">All</button>
+      <button class="filter" data-f="dl">Deep Learning</button>
+      <button class="filter" data-f="nlp">NLP / AI</button>
+      <button class="filter" data-f="de">Data Engineering</button>
+    </div>
+    <div class="proj-grid" id="grid">
+
+      <a class="proj" data-cat="dl" href="https://github.com/Authur-p">
+        <h3>Brain Tumour Classification App</h3>
+        <p>Trained a CNN reaching 99% test accuracy on MRI brain-scan classification, served via a Flask API and integrated into a Flutter mobile app.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">TensorFlow</span><span class="chip">Flask</span><span class="chip">Flutter</span></div>
+        <span class="view">View code</span>
+      </a>
+
+      <a class="proj" data-cat="nlp" href="https://github.com/Authur-p">
+        <h3>AI Chatbot for Banking</h3>
+        <p>An intent-routing assistant with confidence-based fallback, a lightweight RAG pipeline using embeddings &amp; cosine similarity, and text + voice endpoints.</p>
+        <div class="chips"><span class="chip">FastAPI</span><span class="chip">Azure</span><span class="chip">RAG</span><span class="chip">Docker</span></div>
+        <span class="view">View code</span>
+      </a>
+
+      <a class="proj" data-cat="de" href="https://github.com/Authur-p">
+        <h3>Data Engineering &amp; Web Scraping</h3>
+        <p>ETL pipelines over PostgreSQL and REST APIs, plus an asynchronous Playwright scraper collecting structured business data across multiple categories.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">PostgreSQL</span><span class="chip">Playwright</span><span class="chip">Selenium</span></div>
+        <span class="view">View code</span>
+      </a>
+
+      <a class="proj" data-cat="de" href="https://github.com/Authur-p">
+        <h3>Telecom Network Analytics</h3>
+        <p>Python analytics &amp; automation over large-scale 2G–5G datasets, using predictive analytics to flag network degradation early and improve uptime.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">PostgreSQL</span><span class="chip">ETL</span></div>
+        <span class="view">View code</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap reveal">
+    <div class="sec-label">Let's build something</div>
+    <p class="lead" style="margin:0 auto">Open to graduate and junior ML / Data Scientist roles in the UK. Always happy to talk data and models.</p>
+    <div class="contact-links">
+      <a href="mailto:danielopeyemi840@gmail.com" class="btn btn-primary">Email me</a>
+      <a href="https://www.linkedin.com/in/daniel-opeyemi-i" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://github.com/Authur-p" class="btn btn-ghost">GitHub</a>
+      <a href="Opeyemi_Daniel_CV.pdf" class="btn btn-ghost">Download CV</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Opeyemi Daniel · Built with care in Glasgow.</footer>
+
+<script>
+  // mobile nav
+  document.querySelector('.nav-toggle').onclick = () =>
+    document.querySelector('.links').classList.toggle('open');
+  document.querySelectorAll('.links a').forEach(a =>
+    a.onclick = () => document.querySelector('.links').classList.remove('open'));
+
+  // project filter
+  document.querySelectorAll('.filter').forEach(btn => {
+    btn.onclick = () => {
+      document.querySelector('.filter.active').classList.remove('active');
+      btn.classList.add('active');
+      const f = btn.dataset.f;
+      document.querySelectorAll('.proj').forEach(p => {
+        p.style.display = (f === 'all' || p.dataset.cat === f) ? 'flex' : 'none';
+      });
+    };
+  });
+
+  // scroll reveal
+  const io = new IntersectionObserver(es =>
+    es.forEach(e => e.isIntersecting && e.target.classList.add('in')),
+    { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
